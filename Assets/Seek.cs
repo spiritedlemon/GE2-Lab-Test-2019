@@ -12,8 +12,9 @@ public class Seek : SteeringBehaviour
     public GameObject targetGameObject2 = null;
     public GameObject targetGameObject3 = null;
     public GameObject targetGameObject4 = null;
-    
-    public GameObject fighter = null;
+
+    public GameObject fighter;
+    public GameObject bulletPrefab;
 
     public Vector3 target = Vector3.zero;
 
@@ -25,13 +26,14 @@ public class Seek : SteeringBehaviour
     public bool inBase = false;
 
 
+
     public void Start()
     {
         tiberium = 7;
 
         //Debug.Log(targetInt);
         targetSelect();
-       
+
 
     }
 
@@ -64,11 +66,11 @@ public class Seek : SteeringBehaviour
             default:
                 currentTarget = targetGameObject1;
                 break;
-                
+
         }
 
         //If fighter targets own tower targetSelect will be called again
-        if(currentTarget == fighter.transform.parent.gameObject)
+        if (currentTarget == fighter.transform.parent.gameObject)
         {
             targetSelect();
         }
@@ -87,10 +89,10 @@ public class Seek : SteeringBehaviour
             //Gizmos.DrawLine(transform.position, target);
         }
     }
-    
+
     public override Vector3 Calculate()
     {
-        return boid.SeekForce(target);    
+        return boid.SeekForce(target);
     }
 
     public void Update()
@@ -101,7 +103,7 @@ public class Seek : SteeringBehaviour
         }
 
         //when out of fuel return to base
-        if(tiberium == 0)
+        if (tiberium == 0)
         {
             //Sets target to home and variable to check if in base is set to true
             target = fighter.transform.parent.position;
@@ -109,14 +111,18 @@ public class Seek : SteeringBehaviour
         }
 
         //if in the base and has enough tiberium - chooses new target and leaves base
-        if(inBase == true && tiberium >= 7)
+        if (inBase == true && tiberium >= 7)
         {
             targetSelect();
             inBase = false;
 
         }
 
+        //If fighter is within 5 units of target
+        if (Vector3.Distance(fighter.transform.position, target) <= 5)
+        {
+            var bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
+
     }
 }
-
-
