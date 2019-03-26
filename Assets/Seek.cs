@@ -111,13 +111,10 @@ public class Seek : SteeringBehaviour
             inBase = true;
         }
 
-        //if in the base and has enough tiberium - chooses new target and leaves base
-        if (inBase == true && tiberium >= 7)
-        {
-            targetSelect();
-            inBase = false;
 
-        }
+
+        //if in the base and has enough tiberium - chooses new target and leaves base
+        
 
         //If fighter is within 5 units of target
         if (Vector3.Distance(fighter.transform.position, target) <= 5)
@@ -129,7 +126,22 @@ public class Seek : SteeringBehaviour
 
                 tiberium--;
             }
+
+            //if fighter has no ammo and is near base it will reload and choose target
+            if(tiberium == 0 && inBase == true)
+            {
+                tiberium = 7;
+
+                //Chooses new target and leaves base
+
+                targetSelect();
+                inBase = false;
+
+            }
         }
+
+
+
 
     }
 }
