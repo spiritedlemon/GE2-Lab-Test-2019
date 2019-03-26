@@ -121,7 +121,13 @@ public class Seek : SteeringBehaviour
         //If fighter is within 5 units of target
         if (Vector3.Distance(fighter.transform.position, target) <= 5)
         {
-            var bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            //if fighter has ammo it will spend 1 tiberium to create 1 bullet
+            if (tiberium > 0)
+            {
+                var bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+
+                tiberium--;
+            }
         }
 
     }

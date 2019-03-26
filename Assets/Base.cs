@@ -38,6 +38,20 @@ public class Base : MonoBehaviour
     }
     */
 
+    //This is the method for calculating damage
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "bullet")
+        {
+            Destroy(other.gameObject);
+
+            //Base loses .5 tiberium if hit with bullet
+            tiberium = tiberium - 0.5f;
+        }
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
