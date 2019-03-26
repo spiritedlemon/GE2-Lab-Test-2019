@@ -106,7 +106,8 @@ public class Seek : SteeringBehaviour
         if (tiberium == 0)
         {
             //Sets target to home and variable to check if in base is set to true
-            target = fighter.transform.parent.position;
+            target = 
+                fighter.transform.parent.position;
             inBase = true;
         }
 
