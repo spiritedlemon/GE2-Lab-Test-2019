@@ -1564,6 +1564,7 @@ GameObject:
   - component: {fileID: 1261618465}
   - component: {fileID: 1261618468}
   - component: {fileID: 1261618467}
+  - component: {fileID: 1261618469}
   m_Layer: 9
   m_Name: fighter
   m_TagString: Untagged
@@ -1733,6 +1734,24 @@ MonoBehaviour:
   banking: 0.1
   maxSpeed: 5
   maxForce: 10
+--- !u!114 &1261618469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261618464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8946ea69547d1a14b9e905a8fdc415b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  slowingDistance: 15
+  targetGameObject: {fileID: 0}
 --- !u!1 &1363778829
 GameObject:
   m_ObjectHideFlags: 0

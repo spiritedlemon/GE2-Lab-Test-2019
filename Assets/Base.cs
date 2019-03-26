@@ -11,6 +11,7 @@ public class Base : MonoBehaviour
 
     public GameObject fighterPrefab;
     public GameObject baseTower;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class Base : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "" + tiberium;
+        text.text = "" + (Mathf.Round(tiberium));
 
         //Increase tiberium as time goes on
         tiberium += Time.deltaTime;
