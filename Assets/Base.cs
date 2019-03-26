@@ -26,17 +26,6 @@ public class Base : MonoBehaviour
 
     }
 
-    /*
-    void color()
-    {
-
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
-        {
-            r.material.color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
-        }
-
-    }
-    */
 
     //This is the method for calculating damage
     private void OnTriggerEnter(Collider other)
@@ -60,12 +49,13 @@ public class Base : MonoBehaviour
         //Increase tiberium as time goes on
         tiberium += Time.deltaTime;
 
-
-        if(tiberium > 10)
+        //spends 10 tiberium to make a fighter
+        if(tiberium >= 10)
         {
             var fighter = Instantiate(fighterPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity );
             fighter.transform.parent = baseTower.transform;
 
+            //sets fighter as child of base so they can return home
 
 
             tiberium = tiberium - 10;
