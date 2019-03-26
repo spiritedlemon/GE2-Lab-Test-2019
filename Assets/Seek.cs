@@ -12,8 +12,7 @@ public class Seek : SteeringBehaviour
     public GameObject targetGameObject2 = null;
     public GameObject targetGameObject3 = null;
     public GameObject targetGameObject4 = null;
-
-    public GameObject baseGameObject = null;
+    
     public GameObject fighter = null;
 
     public Vector3 target = Vector3.zero;
@@ -36,6 +35,7 @@ public class Seek : SteeringBehaviour
 
     }
 
+    //This method is used to select a target base for the fighter
     public void targetSelect()
     {
         targetVal = UnityEngine.Random.Range(1.0f, 4.0f);
@@ -64,8 +64,13 @@ public class Seek : SteeringBehaviour
             default:
                 currentTarget = targetGameObject1;
                 break;
+                
+        }
 
-
+        //If fighter targets own tower targetSelect will be called again
+        if(currentTarget == fighter.transform.parent.gameObject)
+        {
+            targetSelect();
         }
 
     }
