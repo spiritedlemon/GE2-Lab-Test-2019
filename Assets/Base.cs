@@ -16,12 +16,26 @@ public class Base : MonoBehaviour
     void Start()
     {
 
+        
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
+        }
+        
+
+    }
+
+    /*
+    void color()
+    {
 
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
             r.material.color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
         }
+
     }
+    */
 
     // Update is called once per frame
     void Update()
@@ -34,7 +48,11 @@ public class Base : MonoBehaviour
 
         if(tiberium > 10)
         {
-            Instantiate(fighterPrefab, new Vector3(0, 0, 0), Quaternion.identity );
+            var fighter = Instantiate(fighterPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity );
+            fighter.transform.parent = baseTower.transform;
+
+
+
             tiberium = tiberium - 10;
 
         }

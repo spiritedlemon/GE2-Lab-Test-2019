@@ -6,19 +6,66 @@ using UnityEngine;
 
 public class Seek : SteeringBehaviour
 {
-    public GameObject targetGameObject = null;
+    public GameObject currentTarget = null;
+
+    public GameObject targetGameObject1 = null;
+    public GameObject targetGameObject2 = null;
+    public GameObject targetGameObject3 = null;
+    public GameObject targetGameObject4 = null;
+
     public Vector3 target = Vector3.zero;
+
+    public float targetVal = 0.0f;
+    public float targetInt = 0;
+
+
+    public void Start()
+    {
+
+        targetVal = UnityEngine.Random.Range(1.0f, 4.0f);
+        //Returns the values 1->4
+        targetInt = Mathf.Round(targetVal);
+
+        //Debug.Log(targetInt);
+
+        switch(targetInt)
+        {
+            case 1:
+                currentTarget = targetGameObject1;
+                break;
+
+            case 2:
+                currentTarget = targetGameObject2;
+                break;
+
+            case 3:
+                currentTarget = targetGameObject3;
+                break;
+
+            case 4:
+                currentTarget = targetGameObject4;
+                break;
+
+            default:
+                currentTarget = targetGameObject1;
+                break;
+
+
+        }
+
+
+    }
 
     public void OnDrawGizmos()
     {
         if (isActiveAndEnabled && Application.isPlaying)
         {
             Gizmos.color = Color.cyan;
-            if (targetGameObject != null)
+            if (currentTarget != null)
             {
-                target = targetGameObject.transform.position;
+                target = currentTarget.transform.position;
             }
-            Gizmos.DrawLine(transform.position, target);
+            //Gizmos.DrawLine(transform.position, target);
         }
     }
     
@@ -29,9 +76,14 @@ public class Seek : SteeringBehaviour
 
     public void Update()
     {
-        if (targetGameObject != null)
+        if (currentTarget != null)
         {
-            target = targetGameObject.transform.position;
+            target = currentTarget.transform.position;
         }
+
+
+
     }
 }
+
+
